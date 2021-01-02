@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
       pw: { 
         type: String,
         required: true  
+      },
+      email: {
+        type: String,
+        required: true
       }
 });
 // Create Post Schema

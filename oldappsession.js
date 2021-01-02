@@ -61,7 +61,8 @@ app.post('/reg', (req, res) => {
     bcrypt.hash(req.body.pw, saltRounds, function(err, hash) {
         var newUser = new User({
             user: req.body.user,
-            pw: hash
+            pw: hash,
+            email: req.body.email
         });
         newUser.save().then(user => {
             res.send(user);
@@ -71,6 +72,8 @@ app.post('/reg', (req, res) => {
     });
 });
 
+
+// Login Route - checks for auth and returns username and _id
 app.post('/login', (req, res) => {
     console.log(req.body);
 
@@ -86,21 +89,24 @@ app.post('/login', (req, res) => {
                         user: user.user,
                         _id: user._id
                     }
+                    // Return results on success
                     req.session.user = user;
                     res.send(data);
                 }
                 else {
+                    //Failed to match password
                     res.status(404).send();
                 }
               });
         }
     })
     .catch((e) => {      
+        // Error - send error code
         res.status(400).send(e);    
      });
 });
 
-// Get all user details
+// Get all user details - debug
 app.get('/user', (req, res) => {    
     User.findOne({user:req.body.user})
         .then(user => {       
@@ -110,13 +116,14 @@ app.get('/user', (req, res) => {
            res.send(user);
            console.log(user);
          }).catch((e) => {      
+            // Error - send error code
             res.status(400).send(e);    
          });
 });
 
 // Protected route - check with session
 app.get('/foo', checkSession, (req, res) => {
-    res.send("You're still logged in!" + req.session.user);
+    res.send("You're still logged in!" + req.session.user.user);
 });
 
 
