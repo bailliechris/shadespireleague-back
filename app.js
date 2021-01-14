@@ -29,13 +29,14 @@ app.use(session({
     resave: true,
     saveUninitialized: false,
     cookie: {
-        expires: 30*1000
+        expires: 120*1000
     }
 }));
 
 // Routes List
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
+app.use('/posts', require('./routes/posts'))
 
 // Start Server
 app.listen(port, () => {

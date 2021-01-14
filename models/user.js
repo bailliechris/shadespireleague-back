@@ -19,7 +19,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
       }
-});
+    },
+    { 
+      collection: 'users'
+    }
+);
 // Create Post Schema
 /* const PostSchema = new mongoose.Schema({    
       title: String,    
