@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
      });
 });
 
-// Register
+// Register Users
 router.post('/register', (req, res) => {
     // Check details before creating the user
     // Are the matching variable names causing an issue here?
