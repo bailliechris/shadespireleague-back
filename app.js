@@ -36,7 +36,9 @@ app.use(session({
 // Routes List
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-app.use('/posts', require('./routes/posts'))
+app.use('/posts', require('./routes/posts'));
+
+// Add catch all else routes + redirect to /
 
 // Start Server
 app.listen(port, () => {

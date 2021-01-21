@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+// Check Session
+const checkSession = require('../util/check')
 // Load User model
 const Post = require('../models/post');
-
-var checkSession = function (req, res, next) {
-    if (req.session && req.session.user) {
-        return next();
-    } else {
-        return res.send("Cookie Expired");
-    }
-}
 
 router.post('/create', checkSession, (req, res) => {
     // Create post and saving
