@@ -1,5 +1,4 @@
-// 2.1.21 - Test register, login, functions
-
+// 20.1.21 - Register tested / Reseting password soon?
 
 const express = require('express');
 const router = express.Router();
@@ -74,7 +73,7 @@ router.post('/login', (req, res) => {
      });
 });
 
-// Register
+// Register Users
 router.post('/register', (req, res) => {
     // Check details before creating the user
     // Are the matching variable names causing an issue here?
