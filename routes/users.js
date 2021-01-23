@@ -8,20 +8,6 @@ const bcrypt = require('bcrypt');
 const checkSession = require('../util/check')
 const saltRounds = 10;
 
-/*
-// Make check session into file?
-// Check session is active
-// Check if user already has a cookie, so is allowed on the next page
-var checkSession = function (req, res, next) {
-    if (req.session && req.session.user) {
-        // Refresh user details - pass along
-        return next();
-    } else {
-        return res.send("Cookie Expired");
-    }
-}
-*/
-
 // Testing that the data can be found
 router.post('/test', (req, res) => {
     //MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
