@@ -44,6 +44,23 @@ router.post('/', checkSession, (req, res) => {
     });
 });
 
+// Protected reading of single post
+// req.body to contain title, postedBy(mongoID), content
+router.get('/:id', checkSession, (req, res) => {
+    Post.findOne({_id: req.params.id})
+    .then(post => {
+        if(post) {            
+            res.send(post);          
+        }
+        else {
+            res.send("No posts found")
+        } 
+
+    }).catch((e) => {     
+        res.status(400).send(e);  
+    });
+});
+
 // Get all posts
 router.get('/', (req, res) => {
     Post.find({})
