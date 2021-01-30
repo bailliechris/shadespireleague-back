@@ -2,6 +2,8 @@
 // Test view specific posts route
 // Test deleting a post route
 
+// Test multiple params route
+
 const express = require('express');
 const router = express.Router();
 
@@ -53,9 +55,26 @@ router.get('/:id', checkSession, (req, res) => {
             res.send(post);          
         }
         else {
-            res.send("No posts found")
+            res.send("No posts found");
         } 
 
+    }).catch((e) => {     
+        res.status(400).send(e);  
+    });
+});
+
+// Get filtered results of recipes
+// Prototyping for the blog index
+router.get('/:type/:occasion/:diet/:ingredient/:ratedby', (req, res) => {
+    Post.find({type:req.params.type, occasion: req.params.occasion, diet: req.params.diet, 
+    ingredient: req.params.ingredient})
+    .then(post => {
+        if(post) {
+            res.send(post);
+        }
+        else {
+            res.send("No recipes found");
+        }
     }).catch((e) => {     
         res.status(400).send(e);  
     });
