@@ -30,6 +30,7 @@ router.post('/create', checkSession, (req, res) => {
     })
 });
 
+
 // Protected reading of posts
 router.post('/', checkSession, (req, res) => {
     Post.find({postedBy: req.body.postedBy})
@@ -79,6 +80,7 @@ router.get('/:type/:occasion/:diet/:ingredient/:ratedby', (req, res) => {
         res.status(400).send(e);  
     });
 });
+
 
 // Get all posts
 router.get('/', (req, res) => {
