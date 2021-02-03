@@ -23,4 +23,10 @@ var checkSession = function (req, res, next) {
     }
 }
 
+// Add additional user level - superadmin
+// Variant of checkSession, include additional && for user_level === 2 in .user
+
+
+// Add admin (as above) but user_level === 1 in .user
+
 module.exports = checkSession;
