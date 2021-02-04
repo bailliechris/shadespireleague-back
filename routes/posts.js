@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 // Load route protection method
-const checkSession = require('../util/check');
+const {checkSession, checkAdmin} = require('../util/check');
 
 // Load Post and User models
 const Post = require('../models/post');

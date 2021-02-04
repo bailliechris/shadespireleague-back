@@ -5,7 +5,7 @@ const router = express.Router();
 // Load User model
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-const checkSession = require('../util/check')
+const {checkSession, checkAdmin} = require('../util/check');
 const saltRounds = 10;
 
 // Testing that the data can be found
@@ -115,6 +115,11 @@ router.post('/register', (req, res) => {
 // Protected route - check with session
 router.get('/foo', checkSession, (req, res) => {
     res.send("You're still logged in!" + req.session.user.user);
+});
+
+// Protected Admin route
+router.get('/bar', checkAdmin, (req, res) => {
+    res.send("Admin user access success.");
 });
 
 // Logout
