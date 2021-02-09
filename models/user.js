@@ -28,23 +28,7 @@ const UserSchema = new mongoose.Schema({
       collection: 'users'
     }
 );
-// Create Post Schema
-/* const PostSchema = new mongoose.Schema({    
-      title: String,    
-      postedBy: {        
-         type: mongoose.Schema.Types.ObjectId,        
-         ref: 'User'    
-      },    
-      comments: [{        
-         text: String,        
-         postedBy: {            
-           type: mongoose.Schema.Types.ObjectId,            
-           ref: 'User'        
-         }    
-      }]
-});
 
-*/
+
 // We then need to create models to use it
 module.exports = mongoose.model("User", UserSchema);
-//module.exports = mongoose.model("Post", PostSchema);

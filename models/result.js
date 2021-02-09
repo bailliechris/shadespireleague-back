@@ -5,20 +5,26 @@ const mongoose = require('mongoose');
 // bookmark: true for easier querying of DB to limit to bookmarks
 
 // Create Post Schema
-const BookmarkSchema = new mongoose.Schema({    
-      title: String,    
+const ResultSchema = new mongoose.Schema({     
       postedBy: {        
          type: mongoose.Schema.Types.ObjectId,        
          ref: 'User'    
       },
-      content: String,
-      type: String,
-      bookmark: Boolean    
+      p1n: {        
+         type: mongoose.Schema.Types.ObjectId,        
+         ref: 'User'    
+      },
+      p1glory: Number,
+      p2n: {        
+         type: mongoose.Schema.Types.ObjectId,        
+         ref: 'User'    
+      },
+      p2glory: Number    
    },
    { 
-      collection: 'table'
+      collection: 'results'
    }
 );
 
 // We then need to create models to use it
-module.exports = mongoose.model("Bookmark", BookmarkSchema);
+module.exports = mongoose.model("Results", ResultSchema);
