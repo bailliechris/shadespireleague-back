@@ -19,7 +19,8 @@ const ResultSchema = new mongoose.Schema({
          type: mongoose.Schema.Types.ObjectId,        
          ref: 'User'    
       },
-      p2glory: Number    
+      p2glory: Number,
+      time: Date    
    },
    { 
       collection: 'results'

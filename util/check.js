@@ -26,7 +26,7 @@ var checkSession = function (req, res, next) {
 // Add additional user level - superadmin
 // Variant of checkSession, include additional && for user_level === 2 in .user
 var checkAdmin = function (req, res, next) {
-    if (req.session.user.status === 1) {
+    if (req.session.user.status > 0) {
         return next();
     } else {
         return res.send("Requires Admin Access")

@@ -5,22 +5,22 @@ const router = express.Router();
 const {checkSession, checkAdmin} = require('../util/check');
 
 // Load Post and User models
-const Bookmark = require('../models/bookmark');
+const Result = require('../models/result');
 
-// Create a bookmark
-// req.body to contain title, postedBy(mongoID), content (url), type (category)
-// bookmark: true for easier querying of DB to limit to bookmarks
+// Create a result
+// req.body to contain postedby, p1n, p1glory, p2n, p2glory
 router.post('/add', checkSession, (req, res) => {
     // Create post and saving
-    var bookmark = new Bookmark({
-        title: req.body.title,
+    var result = new Result({
         postedBy: req.body.postedBy,
-        content: req.body.content,
-        type: req.body.type,
-        bookmark: true
+        p1n: req.body.p1n,
+        p1glory: req.body.p1glory,
+        p2n: req.body.p2n,
+        p2glory: req.body.p2glory,
+        time: req.body.time
     });
-    bookmark.save().then(post => {
-        res.send(bookmark);
+    result.save().then(post => {
+        res.send(result);
     }, (e) => {
         res.status(400).send(e);
     })
@@ -29,10 +29,10 @@ router.post('/add', checkSession, (req, res) => {
 // Return All
 // Protected
 router.get('/', checkSession, (req, res) => {
-    Bookmark.find({})
-    .then(bookmark => {
-        if(bookmark) {
-            res.send(bookmark);
+    Result.find({})
+    .then(result => {
+        if(result) {
+            res.send(result);
         }
         else {
             res.send("None of that type found");
@@ -42,16 +42,16 @@ router.get('/', checkSession, (req, res) => {
     });
 });
 
-// Query for types
+// Query for a players result history
 // Protected
-router.get('/q/:type', checkSession, (req, res) => {
-    Bookmark.find({type:req.params.type})
-    .then(bookmark => {
-        if(bookmark) {
-            res.send(bookmark);
+router.get('/q/:p1n', checkSession, (req, res) => {
+    Result.find({$or: [{p1n:req.params.p1n}, {p2n:req.params.p1n}]})
+    .then(result => {
+        if(result) {
+            res.send(result);
         }
         else {
-            res.send("None of that type found");
+            res.send("No results found for that player");
         }
     }).catch((e) => {     
         res.status(400).send(e);  

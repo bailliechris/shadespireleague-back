@@ -36,8 +36,7 @@ app.use(session({
 // Routes List
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
-app.use('/posts', require('./routes/posts'));
-app.use('/bookmark', require('./routes/bookmarks'));
+app.use('/bookmark', require('./routes/results'));
 
 // Add catch all else routes + redirect to /
 
