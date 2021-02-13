@@ -14,11 +14,13 @@ const ResultSchema = new mongoose.Schema({
          type: mongoose.Schema.Types.ObjectId,        
          ref: 'User'    
       },
+      p1band: String,
       p1glory: Number,
       p2n: {        
          type: mongoose.Schema.Types.ObjectId,        
          ref: 'User'    
       },
+      p2band: String,
       p2glory: Number,
       time: Date    
    },

@@ -40,17 +40,17 @@ router.post('/login', (req, res) => {
                     }
                     // Return results on success
                     req.session.user = user;
-                    res.send(data);
+                    res.status(200).send(data);
                 }
                 else {
                     //Failed to match password
-                    res.status(404).send();
+                    res.status(404).send("Password does not match");
                 }
               });
         }
         else {
             // No username match - abort
-            res.status(404).send();
+            res.status(404).send("User not found");
         }
     })
     .catch((e) => {      

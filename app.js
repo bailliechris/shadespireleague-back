@@ -4,6 +4,7 @@ require('dotenv').config();
 // Declare Variables
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 const mongoURI = process.env.MONGO_URI;
@@ -16,8 +17,17 @@ const mongoOptions = {
     dbName: 'ssleague'
 };
 
+//set up cors options
+let corsOptions = {
+    origin: "http://localhost:8080",
+    credentials: true,
+}
+
 // Connect to MongoDB
 mongoose.connect(mongoURI, mongoOptions);
+
+//Run cors in nodejs app
+app.use(cors(corsOptions));
 
 // body-parser middleware
 app.use(express.json()); // for parsing application/json
