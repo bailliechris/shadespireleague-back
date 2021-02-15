@@ -1,4 +1,6 @@
-// 20.1.21 - Register tested / Reseting password soon?
+// 20.1.21 - Register tested / Reseting password ?
+// 15.2.21 - Adding to shadespire league - model changed
+// 15.2.21 - Test returned incorrect user
 
 const express = require('express');
 const router = express.Router();
@@ -10,8 +12,10 @@ const saltRounds = 10;
 
 // Testing that the data can be found
 router.post('/test', (req, res) => {
+    console.log(req);
+    console.log(req.body.user + " " + req.body.pw)
     //MyModel.find({ name: 'john', age: { $gte: 18 }}, function (err, docs) {});
-    User.findOne({email:req.body.email}, function(err, user)
+    User.findOne({name:req.body.user}, function(err, user)
     {
         console.log(user);
         if(user) {

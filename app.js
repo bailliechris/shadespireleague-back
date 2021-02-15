@@ -27,6 +27,7 @@ let corsOptions = {
 mongoose.connect(mongoURI, mongoOptions);
 
 //Run cors in nodejs app
+// cors(corsoptions);
 app.use(cors(corsOptions));
 
 // body-parser middleware
